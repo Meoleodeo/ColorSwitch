@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public SpriteRenderer sR;
+    private SpriteRenderer sR;
     private Rigidbody2D rb;
     [SerializeField] public float jumpHeight;
     public string currentColor;
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI scoreText;
     void Start()
     {
-        RandomColor();
+        RandomColor(3);
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void RandomColor()
+    public void RandomColor(int nValue)
     {
-        int i = Random.Range(0, 3);
+        int i = Random.Range(0, nValue);
         switch (i)
         {
             case 0:
@@ -38,16 +38,16 @@ public class Player : MonoBehaviour
                 sR.color = new Color(255, 0, 0);
                 break;
             case 1:
-                currentColor = "Yellow";
-                sR.color = new Color(255, 255, 0);
+                currentColor = "Green";
+                sR.color = new Color(0, 255, 0);
                 break;
             case 2:
                 currentColor = "Blue";
                 sR.color = new Color(0, 0, 255);
                 break;
             case 3:
-                currentColor = "Green";
-                sR.color = new Color(0, 255, 0);
+                currentColor = "Yellow";
+                sR.color = new Color(255, 255, 0);
                 break;
         }
     }
@@ -61,12 +61,15 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Respawn")
         {
-            jump();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         }
 
         if (other.gameObject.tag == "changeColor")
         {
-            RandomColor();
+            changeColor changeColorScript = other.gameObject.GetComponent<changeColor>();
+            int nValue = changeColorScript.getN();
+            RandomColor(nValue);
         }
         if (other.gameObject.tag == "StarPoint")
         {

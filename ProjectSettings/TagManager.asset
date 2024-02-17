@@ -8,8 +8,8 @@ TagManager:
   - Blue
   - Green
   - Yellow
-  - StartPoint
   - changeColor
+  - StarPoint
   layers:
   - Default
   - TransparentFX
