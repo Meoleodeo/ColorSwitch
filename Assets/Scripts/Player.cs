@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private SpriteRenderer sR;
-    private Rigidbody2D rb;
+    public SpriteRenderer sR;
+    public Rigidbody2D rb;
     [SerializeField] public float jumpHeight;
     public string currentColor;
     public float score;
