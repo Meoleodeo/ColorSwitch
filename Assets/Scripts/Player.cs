@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jump();
-            scoreText.text = "" + score;
+            scoreText.text = "Score: " + score;
         }
     }
 
